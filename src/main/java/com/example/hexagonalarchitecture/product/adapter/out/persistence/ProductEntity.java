@@ -1,6 +1,7 @@
 package com.example.hexagonalarchitecture.product.adapter.out.persistence;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -24,4 +25,9 @@ public class ProductEntity {
     @CreatedDate
     @Column(name = "registration_date", nullable = false)
     private LocalDateTime registrationDate;
+
+    @Builder
+    public ProductEntity(String productName) {
+        this.productName = productName;
+    }
 }

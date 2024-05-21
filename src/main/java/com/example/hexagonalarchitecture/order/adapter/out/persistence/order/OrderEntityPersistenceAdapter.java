@@ -1,5 +1,6 @@
 package com.example.hexagonalarchitecture.order.adapter.out.persistence.order;
 
+import com.example.hexagonalarchitecture.order.application.port.out.CreateOrderPort;
 import com.example.hexagonalarchitecture.order.application.port.out.FindOrderPort;
 import com.example.hexagonalarchitecture.order.domain.Order;
 import com.example.hexagonalarchitecture.order.shared.mapper.OrderMapper;
@@ -12,7 +13,8 @@ import java.util.NoSuchElementException;
 
 @Repository
 @RequiredArgsConstructor
-public class OrderEntityPersistenceAdapter implements FindOrderPort {
+public class OrderEntityPersistenceAdapter implements FindOrderPort, CreateOrderPort {
+    private final OrderEntityJpaRepository repository;
     private final OrderEntityRepositoryCustom repositoryCustom;
     private final OrderMapper mapper;
 
@@ -25,5 +27,11 @@ public class OrderEntityPersistenceAdapter implements FindOrderPort {
     @Override
     public List<Product> findProductByOrderId(Long orderId) {
         return repositoryCustom.findProductByOrderId(orderId);
+    }
+
+    @Override
+    public void createOrder(Order domain) {
+        OrderEntity entity = mapper.toEntity(domain);
+        repository.save(entity);
     }
 }
