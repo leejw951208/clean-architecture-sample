@@ -27,4 +27,12 @@ public class ProductEntityRepositoryCustomImpl implements ProductEntityRepositor
                         .fetchOne()
         );
     }
+
+    @Override
+    public List<ProductEntity> findByIdIn(List<Long> ids) {
+        return queryFactory
+                .selectFrom(productEntity)
+                .where(productEntity.id.in(ids))
+                .fetch();
+    }
 }

@@ -13,7 +13,6 @@ import static com.example.hexagonalarchitecture.order.adapter.out.persistence.or
 import static com.example.hexagonalarchitecture.order.adapter.out.persistence.orderProduct.QOrderProductEntity.orderProductEntity;
 import static com.example.hexagonalarchitecture.product.adapter.out.persistence.QProductEntity.productEntity;
 
-
 @Repository
 @RequiredArgsConstructor
 public class OrderEntityRepositoryCustomImpl implements OrderEntityRepositoryCustom {
@@ -35,7 +34,7 @@ public class OrderEntityRepositoryCustomImpl implements OrderEntityRepositoryCus
                 .select(Projections.fields(Product.class,
                         productEntity.id,
                         productEntity.productName,
-                        productEntity.registrationDate
+                        productEntity.createdDate
                 ))
                 .from(productEntity)
                 .innerJoin(orderProductEntity).on(productEntity.eq(orderProductEntity.productEntity))

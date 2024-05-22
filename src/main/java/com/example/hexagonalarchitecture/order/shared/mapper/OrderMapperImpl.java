@@ -3,11 +3,14 @@ package com.example.hexagonalarchitecture.order.shared.mapper;
 import com.example.hexagonalarchitecture.order.adapter.in.web.dto.CreateOrderRequestDto;
 import com.example.hexagonalarchitecture.order.adapter.in.web.dto.TrackOrderResponseDto;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.order.OrderEntity;
+import com.example.hexagonalarchitecture.order.adapter.out.persistence.orderProduct.OrderProductEntity;
 import com.example.hexagonalarchitecture.order.domain.Order;
+import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.domain.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class OrderMapperImpl implements OrderMapper {
@@ -48,5 +51,15 @@ public class OrderMapperImpl implements OrderMapper {
                 .products(products)
                 .build();
 
+    }
+
+    @Override
+    public List<OrderProductEntity> toEntities(OrderEntity orderEntity, List<ProductEntity> productEntities) {
+        return productEntities.stream()
+                .map(productEntity -> OrderProductEntity.builder()
+                        .orderEntity(orderEntity)
+                        .productEntity(productEntity)
+                        .build())
+                .collect(Collectors.toList());
     }
 }

@@ -22,8 +22,19 @@ public class ProductMapperImpl implements ProductMapper {
         return Product.builder()
                 .id(entity.getId())
                 .productName(entity.getProductName())
-                .registrationDate(entity.getRegistrationDate())
+                .createdDate(entity.getCreatedDate())
                 .build();
+    }
+
+    @Override
+    public List<Product> toDomainsWithId(List<ProductEntity> entities) {
+        return entities.stream()
+                .map(entity -> Product.builder()
+                        .id(entity.getId())
+                        .productName(entity.getProductName())
+                        .createdDate(entity.getCreatedDate()).build()
+                )
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -34,16 +45,21 @@ public class ProductMapperImpl implements ProductMapper {
     }
 
     @Override
-    public List<Product> toDomains(List<CreateProductRequestDto> dtos) {
+    public List<Product> toDomainsFromDto(List<CreateProductRequestDto> dtos) {
         return dtos.stream()
                 .map(dto -> Product.builder().productName(dto.getProductName()).build())
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<ProductEntity> toEntities(List<Product> domains) {
+    public List<ProductEntity> toEntitiesWithId(List<Product> domains) {
         return domains.stream()
-                .map(domain -> ProductEntity.builder().productName(domain.getProductName()).build())
+                .map(domain -> ProductEntity.builder()
+                        .id(domain.getId())
+                        .productName(domain.getProductName())
+                        .createdDate(domain.getCreatedDate())
+                        .build()
+                )
                 .collect(Collectors.toList());
     }
 }

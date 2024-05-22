@@ -5,6 +5,7 @@ import com.example.hexagonalarchitecture.product.application.port.in.CreateProdu
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,13 +16,13 @@ public class CreateProductController {
     private final CreateProductUseCase createProductUseCase;
 
     @PostMapping("/api/product")
-    public ResponseEntity<String> createProduct(CreateProductRequestDto dto) {
+    public ResponseEntity<String> createProduct(@RequestBody CreateProductRequestDto dto) {
         createProductUseCase.createProduct(dto);
         return ResponseEntity.ok("succeed");
     }
 
     @PostMapping("/api/products")
-    public ResponseEntity<String> createProducts(List<CreateProductRequestDto> dtos) {
+    public ResponseEntity<String> createProducts(@RequestBody List<CreateProductRequestDto> dtos) {
         createProductUseCase.createProducts(dtos);
         return ResponseEntity.ok("succeed");
     }

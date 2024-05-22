@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface ProductEntityRepositoryCustom {
     Optional<ProductEntity> findById(Long id);
+    List<ProductEntity> findByIdIn(List<Long> ids);
 }

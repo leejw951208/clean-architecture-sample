@@ -1,6 +1,7 @@
 package com.example.hexagonalarchitecture.product.adapter.out.persistence;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "t_product")
 @Entity
@@ -23,11 +26,6 @@ public class ProductEntity {
     private String productName;
 
     @CreatedDate
-    @Column(name = "registration_date", nullable = false)
-    private LocalDateTime registrationDate;
-
-    @Builder
-    public ProductEntity(String productName) {
-        this.productName = productName;
-    }
+    @Column(name = "created_date", nullable = false)
+    private LocalDateTime createdDate;
 }
