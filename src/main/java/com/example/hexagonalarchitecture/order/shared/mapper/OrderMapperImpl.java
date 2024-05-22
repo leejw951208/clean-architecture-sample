@@ -1,10 +1,14 @@
 package com.example.hexagonalarchitecture.order.shared.mapper;
 
-import com.example.hexagonalarchitecture.order.adapter.in.web.dto.CreateOrderRequestDto;
+import com.example.hexagonalarchitecture.customer.adapter.out.persistence.customer.CustomerEntity;
+import com.example.hexagonalarchitecture.customer.domain.Customer;
+import com.example.hexagonalarchitecture.order.adapter.in.web.dto.CreateGuestOrderRequestDto;
+import com.example.hexagonalarchitecture.order.adapter.in.web.dto.CreateUserOrderRequestDto;
 import com.example.hexagonalarchitecture.order.adapter.in.web.dto.TrackOrderResponseDto;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.order.OrderEntity;
-import com.example.hexagonalarchitecture.order.adapter.out.persistence.orderProduct.OrderProductEntity;
-import com.example.hexagonalarchitecture.order.domain.Order;
+import com.example.hexagonalarchitecture.order.adapter.out.persistence.orderproduct.OrderProductEntity;
+import com.example.hexagonalarchitecture.order.domain.CommandOrder;
+import com.example.hexagonalarchitecture.order.domain.QueryOrder;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.domain.Product;
 import org.springframework.stereotype.Component;
@@ -15,34 +19,37 @@ import java.util.stream.Collectors;
 @Component
 public class OrderMapperImpl implements OrderMapper {
     @Override
-    public Order toDomain(OrderEntity entity) {
-        return Order.builder()
-                .id(entity.getId())
-                .customerName(entity.getCustomerName())
-                .orderStatus(entity.getOrderStatus())
-                .orderDate(entity.getOrderDate())
-                .build();
-    }
-
-    @Override
-    public Order toDomain(CreateOrderRequestDto dto) {
-        return Order.builder()
-                .customerName(dto.getCustomerName())
+    public QueryOrder toDomain(CreateUserOrderRequestDto dto) {
+        return QueryOrder.builder()
                 .orderStatus(1)
                 .build();
     }
 
     @Override
-    public OrderEntity toEntity(Order domain) {
-        return OrderEntity.builder()
-                .customerName(domain.getCustomerName())
-                .orderStatus(domain.getOrderStatus())
-                .orderDate(domain.getOrderDate())
+    public QueryOrder toDomain(CreateGuestOrderRequestDto dto) {
+        return QueryOrder.builder()
+                .orderStatus(1)
                 .build();
     }
 
     @Override
-    public TrackOrderResponseDto toDto(Order order, List<Product> products) {
+    public CommandOrder toDomain(Customer customer, List<Product> products) {
+        return CommandOrder.builder()
+                .customer(customer)
+                .products(products)
+                .build();
+    }
+
+    @Override
+    public OrderEntity toEntity(CommandOrder domain, CustomerEntity customerEntity) {
+        return OrderEntity.builder()
+                .customerEntity(customerEntity)
+                .orderStatus(1)
+                .build();
+    }
+
+    @Override
+    public TrackOrderResponseDto toDto(QueryOrder order, List<Product> products) {
         return TrackOrderResponseDto.builder()
                 .id(order.getId())
                 .customerName(order.getCustomerName())

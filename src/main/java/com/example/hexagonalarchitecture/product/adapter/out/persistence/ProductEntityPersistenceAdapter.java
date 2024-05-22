@@ -20,14 +20,14 @@ public class ProductEntityPersistenceAdapter implements CreateProductPort, FindP
 
     @Override
     @Transactional
-    public void createProduct(Product product) {
+    public void save(Product product) {
         ProductEntity entity = productMapper.toEntity(product);
         repository.save(entity);
     }
 
     @Override
     @Transactional
-    public void createProducts(List<Product> products) {
+    public void saveAll(List<Product> products) {
         List<ProductEntity> entities = productMapper.toEntitiesWithId(products);
         repository.saveAll(entities);
     }

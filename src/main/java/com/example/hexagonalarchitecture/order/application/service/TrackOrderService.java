@@ -3,7 +3,7 @@ package com.example.hexagonalarchitecture.order.application.service;
 import com.example.hexagonalarchitecture.order.adapter.in.web.dto.TrackOrderResponseDto;
 import com.example.hexagonalarchitecture.order.application.port.out.FindOrderPort;
 import com.example.hexagonalarchitecture.order.application.port.in.TrackOrderUseCase;
-import com.example.hexagonalarchitecture.order.domain.Order;
+import com.example.hexagonalarchitecture.order.domain.QueryOrder;
 import com.example.hexagonalarchitecture.order.shared.mapper.OrderMapper;
 import com.example.hexagonalarchitecture.product.domain.Product;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +18,13 @@ public class TrackOrderService implements TrackOrderUseCase {
     private final OrderMapper orderMapper;
 
     @Override
+    public TrackOrderResponseDto trackUserOrder(Long customerId) {
+        return null;
+    }
+
+    @Override
     public TrackOrderResponseDto trackOrder(Long id) {
-        Order findOrder = findOrderOutPort.findById(id);
+        QueryOrder findOrder = findOrderOutPort.findDomainById(id);
         List<Product> findProducts = findOrderOutPort.findProductByOrderId(id);
         return orderMapper.toDto(findOrder, findProducts);
     }

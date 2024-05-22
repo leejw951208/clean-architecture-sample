@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class QueryOrderController {
     private final TrackOrderUseCase trackOrderUseCase;
 
+    @GetMapping("/api/user/{id}/orders")
+    public ResponseEntity<TrackOrderResponseDto> trackUserOrder(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(trackOrderUseCase.trackOrder(id));
+    }
+
     @GetMapping("/api/order/{id}")
     public ResponseEntity<TrackOrderResponseDto> trackOrder(@PathVariable("id") Long id) {
         return ResponseEntity.ok(trackOrderUseCase.trackOrder(id));

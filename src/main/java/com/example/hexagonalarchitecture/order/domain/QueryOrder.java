@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+public class QueryOrder {
     private Long id;
     private String customerName;
     private int orderStatus;

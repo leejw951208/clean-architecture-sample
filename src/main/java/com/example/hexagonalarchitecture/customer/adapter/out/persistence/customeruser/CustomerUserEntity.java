@@ -1,41 +1,38 @@
-package com.example.hexagonalarchitecture.order.adapter.out.persistence.order;
+package com.example.hexagonalarchitecture.customer.adapter.out.persistence.customeruser;
 
 import com.example.hexagonalarchitecture.customer.adapter.out.persistence.customer.CustomerEntity;
+import com.example.hexagonalarchitecture.user.adapter.out.persistence.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-
 
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "t_order")
+@Table(name = "t_user_customer")
 @Entity
-public class OrderEntity {
+public class CustomerUserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
     private CustomerEntity customerEntity;
 
-    @Comment("1: 준비, 2: 배송중, 3: 배송완료, 4: 취소")
-    @ColumnDefault("1")
-    @Column(name = "order_status", length = 1)
-    private int orderStatus = 1;
-
     @CreatedDate
-    @Column(name = "order_date", nullable = false)
-    private LocalDateTime orderDate;
+    @Column(name = "created_date", nullable = false)
+    private LocalDateTime createdDate;
 }

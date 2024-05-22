@@ -19,12 +19,12 @@ public class CreateProductService implements CreateProductUseCase {
     @Override
     public void createProduct(CreateProductRequestDto dto) {
         Product domain = productMapper.toDomain(dto);
-        createProductPort.createProduct(domain);
+        createProductPort.save(domain);
     }
 
     @Override
     public void createProducts(List<CreateProductRequestDto> dtos) {
         List<Product> domains = productMapper.toDomainsFromDto(dtos);
-        createProductPort.createProducts(domains);
+        createProductPort.saveAll(domains);
     }
 }

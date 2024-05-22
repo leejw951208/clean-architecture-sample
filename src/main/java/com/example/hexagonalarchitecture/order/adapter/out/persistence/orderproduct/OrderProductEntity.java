@@ -1,4 +1,4 @@
-package com.example.hexagonalarchitecture.order.adapter.out.persistence.orderProduct;
+package com.example.hexagonalarchitecture.order.adapter.out.persistence.orderproduct;
 
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.order.OrderEntity;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;

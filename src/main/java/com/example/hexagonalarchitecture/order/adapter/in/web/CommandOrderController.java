@@ -1,6 +1,7 @@
 package com.example.hexagonalarchitecture.order.adapter.in.web;
 
-import com.example.hexagonalarchitecture.order.adapter.in.web.dto.CreateOrderRequestDto;
+import com.example.hexagonalarchitecture.order.adapter.in.web.dto.CreateGuestOrderRequestDto;
+import com.example.hexagonalarchitecture.order.adapter.in.web.dto.CreateUserOrderRequestDto;
 import com.example.hexagonalarchitecture.order.application.port.in.CreateOrderUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class CommandOrderController {
     private final CreateOrderUseCase createOrderUseCase;
 
-    @PostMapping("/api/order")
-    public ResponseEntity<String> createOrder(@RequestBody CreateOrderRequestDto dto) {
+    @PostMapping("/api/user/order")
+    public ResponseEntity<String> createOrder(@RequestBody CreateUserOrderRequestDto dto) {
+        createOrderUseCase.createOrder(dto);
+        return ResponseEntity.ok("succeed");
+    }
+
+    @PostMapping("/api/guest/order")
+    public ResponseEntity<String> createOrder(@RequestBody CreateGuestOrderRequestDto dto) {
         createOrderUseCase.createOrder(dto);
         return ResponseEntity.ok("succeed");
     }

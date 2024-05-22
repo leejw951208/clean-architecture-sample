@@ -1,6 +1,5 @@
-package com.example.hexagonalarchitecture.order.adapter.out.persistence.order;
+package com.example.hexagonalarchitecture.customer.adapter.out.persistence.customer;
 
-import com.example.hexagonalarchitecture.customer.adapter.out.persistence.customer.CustomerEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,29 +12,27 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "t_order")
+@Table(name = "t_customer")
 @Entity
-public class OrderEntity {
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private CustomerEntity customerEntity;
+    @Column(name = "name")
+    private String name;
 
-    @Comment("1: 준비, 2: 배송중, 3: 배송완료, 4: 취소")
+    @Comment("1: 회원, 2: 비회원")
     @ColumnDefault("1")
-    @Column(name = "order_status", length = 1)
-    private int orderStatus = 1;
+    @Column(name = "is_user", length = 1, nullable = false)
+    private int isUser;
 
     @CreatedDate
-    @Column(name = "order_date", nullable = false)
-    private LocalDateTime orderDate;
+    @Column(name = "created_date", nullable = false)
+    private LocalDateTime createdDate;
 }
