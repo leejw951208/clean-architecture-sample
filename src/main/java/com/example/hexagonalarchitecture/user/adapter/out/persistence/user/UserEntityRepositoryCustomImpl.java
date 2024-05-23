@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-import static com.example.hexagonalarchitecture.user.adapter.out.persistence.QUserEntity.userEntity;
+import static com.example.hexagonalarchitecture.user.adapter.out.persistence.user.QUserEntity.userEntity;
 
 @Repository
 @RequiredArgsConstructor

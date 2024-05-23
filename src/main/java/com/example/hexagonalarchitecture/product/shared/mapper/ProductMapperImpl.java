@@ -18,7 +18,7 @@ public class ProductMapperImpl implements ProductMapper {
     }
 
     @Override
-    public Product toDomain(ProductEntity entity) {
+    public Product toDomainWithId(ProductEntity entity) {
         return Product.builder()
                 .id(entity.getId())
                 .productName(entity.getProductName())

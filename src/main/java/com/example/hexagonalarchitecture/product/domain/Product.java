@@ -1,6 +1,7 @@
 package com.example.hexagonalarchitecture.product.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,4 +19,7 @@ public class Product {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:dd")
     private LocalDateTime createdDate;
+
+    @JsonIgnore
+    private Long orderId;
 }

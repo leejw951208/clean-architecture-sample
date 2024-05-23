@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProductMapper {
     ProductEntity toEntity(Product domain);
-    Product toDomain(ProductEntity entity);
+    Product toDomainWithId(ProductEntity entity);
     List<Product> toDomainsWithId(List<ProductEntity> entities);
     Product toDomain(CreateProductRequestDto dto);
     List<Product> toDomainsFromDto(List<CreateProductRequestDto> dtos);

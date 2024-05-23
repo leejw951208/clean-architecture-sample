@@ -1,8 +1,8 @@
-package com.example.hexagonalarchitecture.customer.shared.mapper;
+package com.example.hexagonalarchitecture.order.shared.mapper;
 
-import com.example.hexagonalarchitecture.customer.adapter.out.persistence.customer.CustomerEntity;
-import com.example.hexagonalarchitecture.customer.adapter.out.persistence.customeruser.CustomerUserEntity;
-import com.example.hexagonalarchitecture.customer.domain.Customer;
+import com.example.hexagonalarchitecture.order.adapter.out.persistence.customer.CustomerEntity;
+import com.example.hexagonalarchitecture.order.adapter.out.persistence.customeruser.CustomerUserEntity;
+import com.example.hexagonalarchitecture.order.domain.Customer;
 import com.example.hexagonalarchitecture.user.adapter.out.persistence.user.UserEntity;
 import com.example.hexagonalarchitecture.user.domain.User;
 import org.springframework.stereotype.Component;
@@ -18,19 +18,19 @@ public class CustomerMapperImpl implements CustomerMapper {
     }
 
     @Override
-    public Customer toDomain(CustomerEntity entity) {
-        return Customer.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .createdDate(entity.getCreatedDate())
+    public CustomerEntity toEntity(String name, int isUser) {
+        return CustomerEntity.builder()
+                .name(name)
+                .isUser(isUser)
                 .build();
     }
 
     @Override
-    public Customer toDomain(User user) {
+    public Customer toDomainWithId(CustomerEntity customerEntity) {
         return Customer.builder()
-                .name(user.getName())
-                .isUser(1)
+                .id(customerEntity.getId())
+                .name(customerEntity.getName())
+                .isUser(customerEntity.getIsUser())
                 .build();
     }
 

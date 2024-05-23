@@ -1,4 +1,4 @@
-package com.example.hexagonalarchitecture.customer.adapter.out.persistence.customeruser;
+package com.example.hexagonalarchitecture.order.adapter.out.persistence.customeruser;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

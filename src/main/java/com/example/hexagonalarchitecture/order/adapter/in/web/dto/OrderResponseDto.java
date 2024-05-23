@@ -1,10 +1,9 @@
-package com.example.hexagonalarchitecture.order.domain;
+package com.example.hexagonalarchitecture.order.adapter.in.web.dto;
 
 import com.example.hexagonalarchitecture.product.domain.Product;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,12 +11,13 @@ import java.util.List;
 
 @Getter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class QueryOrder {
+public class OrderResponseDto {
     private Long id;
     private String customerName;
+    private String orderNo;
     private int orderStatus;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime orderDate;
 
     @Builder.Default

@@ -1,6 +1,6 @@
 package com.example.hexagonalarchitecture.order.adapter.out.persistence.order;
 
-import com.example.hexagonalarchitecture.customer.adapter.out.persistence.customer.CustomerEntity;
+import com.example.hexagonalarchitecture.order.adapter.out.persistence.customer.CustomerEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +12,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 @Getter
@@ -30,6 +31,9 @@ public class OrderEntity {
     @JoinColumn(name = "customer_id", nullable = false)
     private CustomerEntity customerEntity;
 
+    @Column(name = "order_no", unique = true, nullable = false, length = 50)
+    private String orderNo;
+
     @Comment("1: 준비, 2: 배송중, 3: 배송완료, 4: 취소")
     @ColumnDefault("1")
     @Column(name = "order_status", length = 1)
@@ -38,4 +42,8 @@ public class OrderEntity {
     @CreatedDate
     @Column(name = "order_date", nullable = false)
     private LocalDateTime orderDate;
+
+    public void updateStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }

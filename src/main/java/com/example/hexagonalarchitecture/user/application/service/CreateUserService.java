@@ -16,7 +16,7 @@ public class CreateUserService implements CreateUserUseCase {
 
     @Override
     public void createUser(CreateUserRequestDto dto) {
-        User createdDomain = userMapper.toDomain(dto);
+        User createdDomain = userMapper.toDomainWithId(dto);
         createUserPort.save(createdDomain);
     }
 }

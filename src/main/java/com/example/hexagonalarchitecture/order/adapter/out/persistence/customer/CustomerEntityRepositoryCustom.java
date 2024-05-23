@@ -1,4 +1,6 @@
-package com.example.hexagonalarchitecture.customer.adapter.out.persistence.customer;
+package com.example.hexagonalarchitecture.order.adapter.out.persistence.customer;
+
+import com.example.hexagonalarchitecture.order.domain.Customer;
 
 import java.util.Optional;
 

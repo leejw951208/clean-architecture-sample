@@ -6,6 +6,7 @@ import com.example.hexagonalarchitecture.user.domain.User;
 
 public interface UserMapper {
     UserEntity toEntity(User user);
-    User toDomain(UserEntity userEntity);
-    User toDomain(CreateUserRequestDto dto);
+    UserEntity toEntityWithId(User user);
+    User toDomainWithId(UserEntity userEntity);
+    User toDomainWithId(CreateUserRequestDto dto);
 }

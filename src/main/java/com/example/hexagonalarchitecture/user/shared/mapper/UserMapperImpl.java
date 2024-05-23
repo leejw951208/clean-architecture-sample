@@ -15,7 +15,15 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public User toDomain(UserEntity userEntity) {
+    public UserEntity toEntityWithId(User user) {
+        return UserEntity.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .build();
+    }
+
+    @Override
+    public User toDomainWithId(UserEntity userEntity) {
         return User.builder()
                 .id(userEntity.getId())
                 .name(userEntity.getName())
@@ -25,7 +33,7 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public User toDomain(CreateUserRequestDto dto) {
+    public User toDomainWithId(CreateUserRequestDto dto) {
         return User.builder()
                 .name(dto.getName())
                 .build();
