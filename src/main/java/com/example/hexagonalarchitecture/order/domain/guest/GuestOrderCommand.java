@@ -15,5 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 public class GuestOrderCommand {
     private Guest guest;
+    private String orderNumber;
     private List<Product> products;
 }

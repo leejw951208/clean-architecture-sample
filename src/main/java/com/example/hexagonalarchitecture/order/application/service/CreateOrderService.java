@@ -5,6 +5,7 @@ import com.example.hexagonalarchitecture.guest.domain.Guest;
 import com.example.hexagonalarchitecture.guest.domain.GuestSave;
 import com.example.hexagonalarchitecture.guest.shared.mapper.GuestMapper;
 import com.example.hexagonalarchitecture.order.application.port.in.CreateOrderUseCase;
+import com.example.hexagonalarchitecture.order.application.port.out.FindGuestOrderPort;
 import com.example.hexagonalarchitecture.order.application.port.out.FindUserOrderPort;
 import com.example.hexagonalarchitecture.order.application.port.out.SaveGuestOrderPort;
 import com.example.hexagonalarchitecture.order.application.port.out.SaveUserOrderPort;
@@ -29,6 +30,7 @@ public class CreateOrderService implements CreateOrderUseCase {
     private final FindProductPort findProductPort;
     private final FindUserPort findUserPort;
     private final FindUserOrderPort findUserOrderPort;
+    private final FindGuestOrderPort findGuestOrderPort;
     private final SaveGuestPort saveGuestPort;
     private final SaveGuestOrderPort saveGuestOrderPort;
     private final SaveUserOrderPort saveUserOrderPort;
@@ -55,7 +57,9 @@ public class CreateOrderService implements CreateOrderUseCase {
         GuestSave guestSave = guestMapper.toDomain(name);
         Guest guest = saveGuestPort.save(guestSave);
         List<Product> products = findProductPort.findByIdIn(productIds);
-        GuestOrderCommand guestOrderCommand = guestOrderMapper.toDomain(guest, products);
+        String orderNumber = findGuestOrderPort.findLastOrderNumber();
+        String generatedOrderNumber = this.generatedOrderNumber.generate(orderNumber);
+        GuestOrderCommand guestOrderCommand = guestOrderMapper.toDomain(guest, generatedOrderNumber, products);
         saveGuestOrderPort.save(guestOrderCommand);
     }
 }

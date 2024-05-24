@@ -28,4 +28,12 @@ public class GuestMapperImpl implements GuestMapper {
                 .name(domain.getName())
                 .build();
     }
+
+    @Override
+    public GuestEntity toEntity(Guest domain) {
+        return GuestEntity.builder()
+                .id(domain.getId())
+                .name(domain.getName())
+                .build();
+    }
 }

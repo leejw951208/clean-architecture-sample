@@ -8,4 +8,5 @@ public interface GuestMapper {
     Guest toDomain(GuestEntity entity);
     GuestSave toDomain(String name);
     GuestEntity toEntity(GuestSave domain);
+    GuestEntity toEntity(Guest domain);
 }
