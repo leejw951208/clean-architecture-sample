@@ -12,5 +12,5 @@ public interface ProductMapper {
     List<Product> toDomainsWithId(List<ProductEntity> entities);
     Product toDomain(CreateProductRequestDto dto);
     List<Product> toDomainsFromDto(List<CreateProductRequestDto> dtos);
-    List<ProductEntity> toEntitiesWithId(List<Product> domains);
+    List<ProductEntity> toEntity(List<Product> products);
 }

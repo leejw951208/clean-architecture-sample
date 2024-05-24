@@ -2,6 +2,8 @@ package com.example.hexagonalarchitecture;
 
 import com.example.hexagonalarchitecture.product.adapter.in.web.dto.CreateProductRequestDto;
 import com.example.hexagonalarchitecture.product.application.port.in.CreateProductUseCase;
+import com.example.hexagonalarchitecture.user.adapter.in.web.dto.CreateUserRequestDto;
+import com.example.hexagonalarchitecture.user.application.port.in.CreateUserUseCase;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +18,7 @@ import java.util.List;
 @SpringBootApplication
 public class HexagonalArchitectureApplication {
 	private final CreateProductUseCase createProductUseCase;
+	private final CreateUserUseCase createUserUseCase;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HexagonalArchitectureApplication.class, args);
@@ -28,6 +31,9 @@ public class HexagonalArchitectureApplication {
 			dtos.add(CreateProductRequestDto.builder().productName("product" + i).build());
 		}
 		createProductUseCase.createProducts(dtos);
+
+		createUserUseCase.createUser("홍길동");
+
 		System.out.println("init data");
 	}
 }

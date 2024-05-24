@@ -6,6 +6,7 @@ import com.example.hexagonalarchitecture.user.adapter.out.persistence.user.UserE
 import com.example.hexagonalarchitecture.user.application.port.out.FindUserPort;
 import com.example.hexagonalarchitecture.user.application.port.out.SaveUserPort;
 import com.example.hexagonalarchitecture.user.domain.User;
+import com.example.hexagonalarchitecture.user.domain.UserSave;
 import com.example.hexagonalarchitecture.user.shared.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,7 @@ public class UserEntityCommandAdapter implements SaveUserPort {
     private final UserMapper userMapper;
 
     @Override
-    public void save(User user) {
+    public void save(UserSave user) {
         UserEntity createdEntity = userMapper.toEntity(user);
         userEntityJpaRepository.save(createdEntity);
     }

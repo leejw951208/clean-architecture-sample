@@ -2,9 +2,7 @@ package com.example.hexagonalarchitecture.product.adapter.out.persistence.comman
 
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntityJpaRepository;
-import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntityRepositoryCustom;
 import com.example.hexagonalarchitecture.product.application.port.out.CreateProductPort;
-import com.example.hexagonalarchitecture.product.application.port.out.FindProductPort;
 import com.example.hexagonalarchitecture.product.domain.Product;
 import com.example.hexagonalarchitecture.product.shared.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Repository
 @RequiredArgsConstructor
@@ -30,7 +27,7 @@ public class ProductEntityCommandAdapter implements CreateProductPort {
     @Override
     @Transactional
     public void saveAll(List<Product> products) {
-        List<ProductEntity> entities = productMapper.toEntitiesWithId(products);
+        List<ProductEntity> entities = productMapper.toEntity(products);
         repository.saveAll(entities);
     }
 }

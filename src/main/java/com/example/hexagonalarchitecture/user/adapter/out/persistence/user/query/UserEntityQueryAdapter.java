@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -20,6 +19,6 @@ public class UserEntityQueryAdapter implements FindUserPort {
     @Override
     public User findById(long id) {
         UserEntity entity = userEntityRepositoryCustom.findById(id).orElseThrow(NoSuchElementException::new);
-        return userMapper.toDomainWithId(entity);
+        return userMapper.toDomain(entity);
     }
 }

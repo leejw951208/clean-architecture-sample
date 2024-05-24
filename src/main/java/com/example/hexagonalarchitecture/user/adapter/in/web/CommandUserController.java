@@ -15,7 +15,7 @@ public class CommandUserController {
 
     @PostMapping("/api/user")
     public ResponseEntity<String> createUser(@RequestBody CreateUserRequestDto dto) {
-        createUserUseCase.createUser(dto);
+        createUserUseCase.createUser(dto.getName());
         return ResponseEntity.ok("succeed");
     }
 }

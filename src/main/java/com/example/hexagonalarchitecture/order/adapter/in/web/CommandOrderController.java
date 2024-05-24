@@ -20,13 +20,13 @@ public class CommandOrderController {
             @PathVariable("userId") long userId,
             @RequestBody CreateUserOrderRequestDto dto
     ) {
-        createOrderUseCase.createOrder(userId, dto.getProductIds());
+        createOrderUseCase.createUserOrder(userId, dto.getProductIds());
         return ResponseEntity.ok("succeed");
     }
 
     @PostMapping("/api/guest/order")
     public ResponseEntity<String> createOrder(@RequestBody CreateGuestOrderRequestDto dto) {
-        createOrderUseCase.createOrder(dto.getCustomerName(), dto.getProductIds());
+        createOrderUseCase.createGuestOrder(dto.getCustomerName(), dto.getProductIds());
         return ResponseEntity.ok("succeed");
     }
 }

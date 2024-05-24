@@ -52,12 +52,12 @@ public class ProductMapperImpl implements ProductMapper {
     }
 
     @Override
-    public List<ProductEntity> toEntitiesWithId(List<Product> domains) {
-        return domains.stream()
-                .map(domain -> ProductEntity.builder()
-                        .id(domain.getId())
-                        .productName(domain.getProductName())
-                        .createdDate(domain.getCreatedDate())
+    public List<ProductEntity> toEntity(List<Product> products) {
+        return products.stream()
+                .map(product -> ProductEntity.builder()
+                        .id(product.getId())
+                        .productName(product.getProductName())
+                        .createdDate(product.getCreatedDate())
                         .build()
                 )
                 .collect(Collectors.toList());
