@@ -9,8 +9,8 @@ import com.example.hexagonalarchitecture.order.application.port.out.FindGuestOrd
 import com.example.hexagonalarchitecture.order.application.port.out.FindUserOrderPort;
 import com.example.hexagonalarchitecture.order.application.port.out.SaveGuestOrderPort;
 import com.example.hexagonalarchitecture.order.application.port.out.SaveUserOrderPort;
-import com.example.hexagonalarchitecture.order.domain.guest.GuestOrderCommand;
-import com.example.hexagonalarchitecture.order.domain.user.UserOrderCommand;
+import com.example.hexagonalarchitecture.order.domain.GuestOrderSave;
+import com.example.hexagonalarchitecture.order.domain.UserOrderSave;
 import com.example.hexagonalarchitecture.order.shared.mapper.guest.GuestOrderMapper;
 import com.example.hexagonalarchitecture.order.shared.mapper.user.UserOrderMapper;
 import com.example.hexagonalarchitecture.order.shared.util.GeneratedOrderNumber;
@@ -47,7 +47,7 @@ public class CreateOrderService implements CreateOrderUseCase {
         List<Product> products = findProductPort.findByIdIn(productIds);
         String orderNumber = findUserOrderPort.findLastOrderNumber();
         String generatedOrderNumber = this.generatedOrderNumber.generate(orderNumber);
-        UserOrderCommand userOrderCommand = userOrderMapper.toDomain(user, generatedOrderNumber, products);
+        UserOrderSave userOrderCommand = userOrderMapper.toDomain(user, generatedOrderNumber, products);
         saveUserOrderPort.save(userOrderCommand);
     }
 
@@ -59,7 +59,7 @@ public class CreateOrderService implements CreateOrderUseCase {
         List<Product> products = findProductPort.findByIdIn(productIds);
         String orderNumber = findGuestOrderPort.findLastOrderNumber();
         String generatedOrderNumber = this.generatedOrderNumber.generate(orderNumber);
-        GuestOrderCommand guestOrderCommand = guestOrderMapper.toDomain(guest, generatedOrderNumber, products);
+        GuestOrderSave guestOrderCommand = guestOrderMapper.toDomain(guest, generatedOrderNumber, products);
         saveGuestOrderPort.save(guestOrderCommand);
     }
 }

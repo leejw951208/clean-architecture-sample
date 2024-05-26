@@ -4,14 +4,11 @@ import com.example.hexagonalarchitecture.guest.adapter.out.persistence.GuestEnti
 import com.example.hexagonalarchitecture.guest.shared.mapper.GuestMapper;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.guest.detail.GuestOrderDetailEntity;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.guest.detail.GuestOrderDetailEntityJpaRepository;
-import com.example.hexagonalarchitecture.order.adapter.out.persistence.user.detail.UserOrderDetailEntity;
-import com.example.hexagonalarchitecture.order.adapter.out.persistence.user.order.UserOrderEntity;
 import com.example.hexagonalarchitecture.order.application.port.out.SaveGuestOrderPort;
-import com.example.hexagonalarchitecture.order.domain.guest.GuestOrderCommand;
+import com.example.hexagonalarchitecture.order.domain.GuestOrderSave;
 import com.example.hexagonalarchitecture.order.shared.mapper.guest.GuestOrderMapper;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.shared.mapper.ProductMapper;
-import com.example.hexagonalarchitecture.user.adapter.out.persistence.user.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +24,7 @@ public class GuestOrderEntityCommandAdapter implements SaveGuestOrderPort {
     private final ProductMapper productMapper;
 
     @Override
-    public void save(GuestOrderCommand domain) {
+    public void save(GuestOrderSave domain) {
         GuestEntity guest = guestMapper.toEntity(domain.getGuest());
         GuestOrderEntity guestOrder = guestOrderMapper.toEntity(guest, domain.getOrderNumber());
         GuestOrderEntity savedGuestOrder = guestOrderEntityJpaRepository.save(guestOrder);

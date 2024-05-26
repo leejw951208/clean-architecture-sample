@@ -17,9 +17,7 @@ public class GuestMapperImpl implements GuestMapper {
 
     @Override
     public GuestSave toDomain(String name) {
-        return GuestSave.builder()
-                .name(name)
-                .build();
+        return new GuestSave(name);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.example.hexagonalarchitecture.order.adapter.out.persistence.user.ord
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.user.detail.UserOrderDetailEntity;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.user.detail.UserOrderDetailEntityJpaRepository;
 import com.example.hexagonalarchitecture.order.application.port.out.SaveUserOrderPort;
-import com.example.hexagonalarchitecture.order.domain.user.UserOrderCommand;
+import com.example.hexagonalarchitecture.order.domain.UserOrderSave;
 import com.example.hexagonalarchitecture.order.shared.mapper.user.UserOrderMapper;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.shared.mapper.ProductMapper;
@@ -25,7 +25,7 @@ public class UserOrderEntityCommandAdapter implements SaveUserOrderPort {
     private final ProductMapper productMapper;
 
     @Override
-    public void save(UserOrderCommand domain) {
+    public void save(UserOrderSave domain) {
         UserEntity user = userMapper.toEntity(domain.getUser());
         UserOrderEntity userOrder = userOrderMapper.toEntity(user, domain.getOrderNumber());
         UserOrderEntity savedUserOrder = userOrderEntityJpaRepository.save(userOrder);

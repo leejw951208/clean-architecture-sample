@@ -1,4 +1,4 @@
-package com.example.hexagonalarchitecture.order.domain.user;
+package com.example.hexagonalarchitecture.order.domain;
 
 import com.example.hexagonalarchitecture.product.domain.Product;
 import com.example.hexagonalarchitecture.user.domain.User;
@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserOrderCommand {
+public class UserOrderSave {
     private User user;
     private String orderNumber;
     private List<Product> products;

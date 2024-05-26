@@ -2,7 +2,7 @@ package com.example.hexagonalarchitecture.order.shared.mapper.user;
 
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.user.detail.UserOrderDetailEntity;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.user.order.UserOrderEntity;
-import com.example.hexagonalarchitecture.order.domain.user.UserOrderCommand;
+import com.example.hexagonalarchitecture.order.domain.UserOrderSave;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.domain.Product;
 import com.example.hexagonalarchitecture.user.adapter.out.persistence.user.UserEntity;
@@ -14,8 +14,8 @@ import java.util.List;
 @Component
 public class UserOrderMapperImpl implements UserOrderMapper {
     @Override
-    public UserOrderCommand toDomain(User user, String orderNumber, List<Product> products) {
-        return UserOrderCommand.builder()
+    public UserOrderSave toDomain(User user, String orderNumber, List<Product> products) {
+        return UserOrderSave.builder()
                 .user(user)
                 .orderNumber(orderNumber)
                 .products(products)

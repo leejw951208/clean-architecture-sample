@@ -4,14 +4,14 @@ import com.example.hexagonalarchitecture.guest.adapter.out.persistence.GuestEnti
 import com.example.hexagonalarchitecture.guest.domain.Guest;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.guest.detail.GuestOrderDetailEntity;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.guest.order.GuestOrderEntity;
-import com.example.hexagonalarchitecture.order.domain.guest.GuestOrderCommand;
+import com.example.hexagonalarchitecture.order.domain.GuestOrderSave;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.domain.Product;
 
 import java.util.List;
 
 public interface GuestOrderMapper {
-    GuestOrderCommand toDomain(Guest guest, String orderNumber, List<Product> products);
+    GuestOrderSave toDomain(Guest guest, String orderNumber, List<Product> products);
     GuestOrderEntity toEntity(GuestEntity guest, String orderNumber);
     List<GuestOrderDetailEntity> toEntity(GuestOrderEntity guestOrder, List<ProductEntity> products);
 }

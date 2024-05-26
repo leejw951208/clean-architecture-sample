@@ -1,8 +1,7 @@
 package com.example.hexagonalarchitecture.order.application.port.out;
 
-import com.example.hexagonalarchitecture.order.domain.guest.GuestOrderCommand;
-import com.example.hexagonalarchitecture.order.domain.user.UserOrderCommand;
+import com.example.hexagonalarchitecture.order.domain.UserOrderSave;
 
 public interface SaveUserOrderPort {
-    void save(UserOrderCommand domain);
+    void save(UserOrderSave domain);
 }

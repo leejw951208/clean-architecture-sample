@@ -4,7 +4,7 @@ import com.example.hexagonalarchitecture.guest.adapter.out.persistence.GuestEnti
 import com.example.hexagonalarchitecture.guest.domain.Guest;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.guest.detail.GuestOrderDetailEntity;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.guest.order.GuestOrderEntity;
-import com.example.hexagonalarchitecture.order.domain.guest.GuestOrderCommand;
+import com.example.hexagonalarchitecture.order.domain.GuestOrderSave;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.domain.Product;
 import org.springframework.stereotype.Component;
@@ -14,8 +14,8 @@ import java.util.List;
 @Component
 public class GuestOrderMapperImpl implements GuestOrderMapper {
     @Override
-    public GuestOrderCommand toDomain(Guest guest, String orderNumber, List<Product> products) {
-        return GuestOrderCommand.builder()
+    public GuestOrderSave toDomain(Guest guest, String orderNumber, List<Product> products) {
+        return GuestOrderSave.builder()
                 .guest(guest)
                 .orderNumber(orderNumber)
                 .products(products)
