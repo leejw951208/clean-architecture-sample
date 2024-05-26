@@ -2,8 +2,9 @@ package com.example.hexagonalarchitecture.product.adapter.out.persistence.comman
 
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntityJpaRepository;
-import com.example.hexagonalarchitecture.product.application.port.out.CreateProductPort;
+import com.example.hexagonalarchitecture.product.application.port.out.ProductSavePort;
 import com.example.hexagonalarchitecture.product.domain.Product;
+import com.example.hexagonalarchitecture.product.domain.ProductSave;
 import com.example.hexagonalarchitecture.product.shared.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,21 +14,15 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class ProductEntityCommandAdapter implements CreateProductPort {
-    private final ProductEntityJpaRepository repository;
+public class ProductEntityCommandAdapter implements ProductSavePort {
+    private final ProductEntityJpaRepository productEntityJpaRepository;
     private final ProductMapper productMapper;
 
     @Override
     @Transactional
-    public void save(Product product) {
-        ProductEntity entity = productMapper.toEntity(product);
-        repository.save(entity);
-    }
-
-    @Override
-    @Transactional
-    public void saveAll(List<Product> products) {
-        List<ProductEntity> entities = productMapper.toEntity(products);
-        repository.saveAll(entities);
+    public List<Product> saveAll(List<ProductSave> products) {
+        List<ProductEntity> productEntities = productMapper.fromProductSaves(products);
+        List<ProductEntity> savedProductEntities = productEntityJpaRepository.saveAll(productEntities);
+        return productMapper.fromEntities(savedProductEntities);
     }
 }

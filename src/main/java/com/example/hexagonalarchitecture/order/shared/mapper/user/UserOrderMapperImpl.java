@@ -2,6 +2,7 @@ package com.example.hexagonalarchitecture.order.shared.mapper.user;
 
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.user.detail.UserOrderDetailEntity;
 import com.example.hexagonalarchitecture.order.adapter.out.persistence.user.order.UserOrderEntity;
+import com.example.hexagonalarchitecture.order.domain.Order;
 import com.example.hexagonalarchitecture.order.domain.UserOrderSave;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.domain.Product;
@@ -14,7 +15,7 @@ import java.util.List;
 @Component
 public class UserOrderMapperImpl implements UserOrderMapper {
     @Override
-    public UserOrderSave toDomain(User user, String orderNumber, List<Product> products) {
+    public UserOrderSave fromArgs(User user, String orderNumber, List<Product> products) {
         return UserOrderSave.builder()
                 .user(user)
                 .orderNumber(orderNumber)
@@ -23,7 +24,7 @@ public class UserOrderMapperImpl implements UserOrderMapper {
     }
 
     @Override
-    public UserOrderEntity toEntity(UserEntity user, String orderNumber) {
+    public UserOrderEntity fromArgs(UserEntity user, String orderNumber) {
         return UserOrderEntity.builder()
                 .user(user)
                 .orderNumber(orderNumber)
@@ -34,7 +35,7 @@ public class UserOrderMapperImpl implements UserOrderMapper {
     }
 
     @Override
-    public List<UserOrderDetailEntity> toEntity(UserOrderEntity userOrder, List<ProductEntity> products) {
+    public List<UserOrderDetailEntity> fromArgs(UserOrderEntity userOrder, List<ProductEntity> products) {
         return products.stream()
                 .map(product -> UserOrderDetailEntity.builder()
                         .userOrder(userOrder)
@@ -44,5 +45,4 @@ public class UserOrderMapperImpl implements UserOrderMapper {
                 )
                 .toList();
     }
-
 }

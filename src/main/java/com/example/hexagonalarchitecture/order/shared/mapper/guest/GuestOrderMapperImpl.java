@@ -14,7 +14,7 @@ import java.util.List;
 @Component
 public class GuestOrderMapperImpl implements GuestOrderMapper {
     @Override
-    public GuestOrderSave toDomain(Guest guest, String orderNumber, List<Product> products) {
+    public GuestOrderSave fromArgs(Guest guest, String orderNumber, List<Product> products) {
         return GuestOrderSave.builder()
                 .guest(guest)
                 .orderNumber(orderNumber)
@@ -23,7 +23,7 @@ public class GuestOrderMapperImpl implements GuestOrderMapper {
     }
 
     @Override
-    public GuestOrderEntity toEntity(GuestEntity guest, String orderNumber) {
+    public GuestOrderEntity fromArgs(GuestEntity guest, String orderNumber) {
         return GuestOrderEntity.builder()
                 .guest(guest)
                 .orderNumber(orderNumber)
@@ -34,7 +34,7 @@ public class GuestOrderMapperImpl implements GuestOrderMapper {
     }
 
     @Override
-    public List<GuestOrderDetailEntity> toEntity(GuestOrderEntity guestOrder, List<ProductEntity> products) {
+    public List<GuestOrderDetailEntity> fromArgs(GuestOrderEntity guestOrder, List<ProductEntity> products) {
         return products.stream()
                 .map(product -> GuestOrderDetailEntity.builder()
                         .guestOrder(guestOrder)

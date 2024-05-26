@@ -8,30 +8,30 @@ import org.springframework.stereotype.Component;
 @Component
 public class GuestMapperImpl implements GuestMapper {
     @Override
-    public Guest toDomain(GuestEntity entity) {
+    public Guest fromEntity(GuestEntity guestEntity) {
         return Guest.builder()
-                .id(entity.getId())
-                .name(entity.getName())
+                .id(guestEntity.getId())
+                .name(guestEntity.getName())
                 .build();
     }
 
     @Override
-    public GuestSave toDomain(String name) {
+    public GuestSave fromString(String name) {
         return new GuestSave(name);
     }
 
     @Override
-    public GuestEntity toEntity(GuestSave domain) {
+    public GuestEntity fromGuestSave(GuestSave guestSave) {
         return GuestEntity.builder()
-                .name(domain.getName())
+                .name(guestSave.getName())
                 .build();
     }
 
     @Override
-    public GuestEntity toEntity(Guest domain) {
+    public GuestEntity fromGuest(Guest guest) {
         return GuestEntity.builder()
-                .id(domain.getId())
-                .name(domain.getName())
+                .id(guest.getId())
+                .name(guest.getName())
                 .build();
     }
 }

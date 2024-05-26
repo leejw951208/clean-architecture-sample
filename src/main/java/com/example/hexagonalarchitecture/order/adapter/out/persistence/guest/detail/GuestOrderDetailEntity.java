@@ -24,7 +24,7 @@ public class GuestOrderDetailEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "guest_order_id")
+    @JoinColumn(name = "order_id")
     private GuestOrderEntity guestOrder;
 
     @ManyToOne(fetch = FetchType.LAZY)

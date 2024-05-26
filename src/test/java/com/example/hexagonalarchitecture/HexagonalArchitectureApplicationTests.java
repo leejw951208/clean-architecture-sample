@@ -1,9 +1,7 @@
 package com.example.hexagonalarchitecture;
 
 import com.example.hexagonalarchitecture.order.shared.util.GeneratedOrderNumber;
-import com.example.hexagonalarchitecture.user.adapter.in.web.dto.CreateUserRequestDto;
-import com.example.hexagonalarchitecture.user.domain.User;
-import com.example.hexagonalarchitecture.user.shared.mapper.UserMapper;
+import com.example.hexagonalarchitecture.product.domain.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,8 +13,12 @@ class HexagonalArchitectureApplicationTests {
 
 	@Test
 	void contextLoads() {
-		String generate = generatedOrderNumber.generate("230524GA99999");
-		System.out.println("===" + generate);
+		Product product = Product.builder()
+				.id(null)
+				.name("name")
+				.createdDate(null)
+				.build();
+
 	}
 
 }

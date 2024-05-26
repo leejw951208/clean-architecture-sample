@@ -11,7 +11,7 @@ import com.example.hexagonalarchitecture.user.domain.User;
 import java.util.List;
 
 public interface UserOrderMapper {
-    UserOrderSave toDomain(User user, String orderNumber, List<Product> products);
-    UserOrderEntity toEntity(UserEntity user, String orderNumber);
-    List<UserOrderDetailEntity> toEntity(UserOrderEntity userOrder, List<ProductEntity> products);
+    UserOrderSave fromArgs(User user, String orderNumber, List<Product> products);
+    UserOrderEntity fromArgs(UserEntity user, String orderNumber);
+    List<UserOrderDetailEntity> fromArgs(UserOrderEntity userOrder, List<ProductEntity> products);
 }

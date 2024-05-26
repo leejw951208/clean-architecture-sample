@@ -5,8 +5,8 @@ import com.example.hexagonalarchitecture.guest.domain.Guest;
 import com.example.hexagonalarchitecture.guest.domain.GuestSave;
 
 public interface GuestMapper {
-    Guest toDomain(GuestEntity entity);
-    GuestSave toDomain(String name);
-    GuestEntity toEntity(GuestSave domain);
-    GuestEntity toEntity(Guest domain);
+    Guest fromEntity(GuestEntity guestEntity);
+    GuestSave fromString(String name);
+    GuestEntity fromGuestSave(GuestSave guestSave);
+    GuestEntity fromGuest(Guest guest);
 }

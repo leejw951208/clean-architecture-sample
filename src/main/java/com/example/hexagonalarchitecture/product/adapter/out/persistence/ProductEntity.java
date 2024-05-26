@@ -22,8 +22,8 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "product_name", length = 30, nullable = false)
-    private String productName;
+    @Column(name = "name", length = 30, nullable = false)
+    private String name;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)

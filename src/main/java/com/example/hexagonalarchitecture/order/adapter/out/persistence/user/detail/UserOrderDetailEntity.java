@@ -24,7 +24,7 @@ public class UserOrderDetailEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_order_id")
+    @JoinColumn(name = "order_id")
     private UserOrderEntity userOrder;
 
     @ManyToOne(fetch = FetchType.LAZY)

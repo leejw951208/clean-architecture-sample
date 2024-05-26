@@ -5,27 +5,28 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
+import static com.example.hexagonalarchitecture.order.adapter.out.persistence.user.detail.QUserOrderDetailEntity.userOrderDetailEntity;
+import static com.example.hexagonalarchitecture.order.adapter.out.persistence.user.order.QUserOrderEntity.userOrderEntity;
 import static com.example.hexagonalarchitecture.product.adapter.out.persistence.QProductEntity.productEntity;
 
 @Repository
 @RequiredArgsConstructor
-public class ProductEntityRepositoryCustomImpl implements ProductEntityRepositoryCustom {
+public class ProductEntityRepositoryCustomImpl implements ProductEntityRepository {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Optional<ProductEntity> findById(Long id) {
-        return Optional.ofNullable(
-                queryFactory
-                        .selectFrom(productEntity)
-                        .where(productEntity.id.eq(id))
-                        .fetchOne()
-        );
+    public List<ProductEntity> findProducts(long orderId) {
+        return queryFactory
+                .selectFrom(productEntity)
+                .innerJoin(userOrderDetailEntity).on(productEntity.eq(userOrderDetailEntity.product))
+                .innerJoin(userOrderEntity).on(userOrderDetailEntity.userOrder.eq(userOrderEntity))
+                .where(userOrderEntity.id.eq(orderId))
+                .fetch();
     }
 
     @Override
-    public List<ProductEntity> findByIdIn(List<Long> ids) {
+    public List<ProductEntity> findProducts(List<Long> ids) {
         return queryFactory
                 .selectFrom(productEntity)
                 .where(productEntity.id.in(ids))

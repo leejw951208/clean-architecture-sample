@@ -1,39 +1,38 @@
 package com.example.hexagonalarchitecture;
 
-import com.example.hexagonalarchitecture.product.adapter.in.web.dto.CreateProductRequestDto;
-import com.example.hexagonalarchitecture.product.application.port.in.CreateProductUseCase;
-import com.example.hexagonalarchitecture.user.adapter.in.web.dto.CreateUserRequestDto;
-import com.example.hexagonalarchitecture.user.application.port.in.CreateUserUseCase;
+import com.example.hexagonalarchitecture.product.adapter.in.web.dto.ProductSaveDto;
+import com.example.hexagonalarchitecture.product.application.port.in.ProductSaveUseCases;
+import com.example.hexagonalarchitecture.product.domain.ProductSave;
+import com.example.hexagonalarchitecture.user.application.port.in.UserSaveUseCases;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @EnableJpaAuditing
 @RequiredArgsConstructor
 @SpringBootApplication
 public class HexagonalArchitectureApplication {
-	private final CreateProductUseCase createProductUseCase;
-	private final CreateUserUseCase createUserUseCase;
+	/*private final ProductSaveUseCases productSaveUseCases;
+	private final UserSaveUseCases userSaveUseCases;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(HexagonalArchitectureApplication.class, args);
 	}
 
-	@PostConstruct
+	/*@PostConstruct
 	public void init() {
-		List<CreateProductRequestDto> dtos = new ArrayList<>();
-		for (int i = 1; i <= 10; i++) {
-			dtos.add(CreateProductRequestDto.builder().productName("product" + i).build());
-		}
-		createProductUseCase.createProducts(dtos);
+		List<String> names = IntStream.range(1, 10)
+				.mapToObj(i -> "product" + i)
+				.toList();
 
-		createUserUseCase.createUser("홍길동");
+		productSaveUseCases.saveProducts(names);
+		userSaveUseCases.saveUser("홍길동");
 
 		System.out.println("init data");
-	}
+	}*/
 }

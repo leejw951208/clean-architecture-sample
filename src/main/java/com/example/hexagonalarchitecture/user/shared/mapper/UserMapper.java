@@ -5,8 +5,8 @@ import com.example.hexagonalarchitecture.user.domain.User;
 import com.example.hexagonalarchitecture.user.domain.UserSave;
 
 public interface UserMapper {
-    User toDomain(UserEntity userEntity);
-    UserSave toDomain(String name);
-    UserEntity toEntity(UserSave domain);
-    UserEntity toEntity(User user);
+    User fromEntity(UserEntity userEntity);
+    UserSave fromString(String name);
+    UserEntity fromUserSave(UserSave domain);
+    UserEntity fromUser(User user);
 }

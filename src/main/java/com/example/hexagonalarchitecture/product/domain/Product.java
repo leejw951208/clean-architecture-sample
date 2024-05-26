@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Product {
     private Long id;
-    private String productName;
+    private String name;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:dd")
     private LocalDateTime createdDate;
