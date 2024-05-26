@@ -21,8 +21,9 @@ public class ProductCommandController {
     private final ProductMapper productMapper;
 
     @PostMapping("/api/products")
-    public ResponseEntity<List<Product>> saveProducts(@RequestBody List<ProductSaveDto> dtos) {
+    public ResponseEntity<String> saveProducts(@RequestBody List<ProductSaveDto> dtos) {
         List<String> names = dtos.stream().map(ProductSaveDto::getName).toList();
-        return new ResponseEntity<>(productSaveUseCases.saveProducts(productMapper.fromStrings(names)), HttpStatus.CREATED);
+        productSaveUseCases.saveProducts(productMapper.fromStrings(names));
+        return new ResponseEntity<>("succeed", HttpStatus.CREATED);
     }
 }

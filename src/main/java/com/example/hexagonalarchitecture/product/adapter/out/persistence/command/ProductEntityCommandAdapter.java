@@ -20,9 +20,8 @@ public class ProductEntityCommandAdapter implements ProductSavePort {
 
     @Override
     @Transactional
-    public List<Product> saveAll(List<ProductSave> products) {
+    public void saveAll(List<ProductSave> products) {
         List<ProductEntity> productEntities = productMapper.fromProductSaves(products);
-        List<ProductEntity> savedProductEntities = productEntityJpaRepository.saveAll(productEntities);
-        return productMapper.fromEntities(savedProductEntities);
+        productEntityJpaRepository.saveAll(productEntities);
     }
 }

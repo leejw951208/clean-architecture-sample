@@ -16,7 +16,7 @@ public class ProductSaveService implements ProductSaveUseCases {
     private final ProductSavePort productSavePort;
 
     @Override
-    public List<Product> saveProducts(List<ProductSave> productSaves) {
-        return productSavePort.saveAll(productSaves);
+    public void saveProducts(List<ProductSave> productSaves) {
+        productSavePort.saveAll(productSaves);
     }
 }

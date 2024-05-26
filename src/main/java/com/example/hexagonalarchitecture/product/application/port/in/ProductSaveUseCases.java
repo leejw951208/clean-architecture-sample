@@ -6,5 +6,5 @@ import com.example.hexagonalarchitecture.product.domain.ProductSave;
 import java.util.List;
 
 public interface ProductSaveUseCases {
-    List<Product> saveProducts(List<ProductSave> productSaves);
+    void saveProducts(List<ProductSave> productSaves);
 }
