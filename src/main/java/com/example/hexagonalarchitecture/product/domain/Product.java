@@ -19,7 +19,4 @@ public class Product {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:dd")
     private LocalDateTime createdDate;
-
-    @JsonIgnore
-    private Long orderId;
 }

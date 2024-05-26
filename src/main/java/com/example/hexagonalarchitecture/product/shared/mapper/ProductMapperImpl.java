@@ -25,7 +25,9 @@ public class ProductMapperImpl implements ProductMapper {
     public List<Product> fromEntities(List<ProductEntity> productEntities) {
         return productEntities.stream()
                 .map(productEntity -> Product.builder()
+                        .id(productEntity.getId())
                         .name(productEntity.getName())
+                        .createdDate(productEntity.getCreatedDate())
                         .build()
                 )
                 .toList();

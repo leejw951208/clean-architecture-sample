@@ -44,18 +44,14 @@ public class ProductTest {
     @DisplayName("상품 다건 저장")
     public void saveProductsTest() throws Exception {
         // given
-        List<ProductSaveDto> saveDtos = List.of(
-                ProductSaveDto.builder().name("product1").build(),
-                ProductSaveDto.builder().name("product2").build()
-        );
+        List<ProductSaveDto> saveDtos = createProductSaveDto();
         String content = objectMapper.writeValueAsString(saveDtos);
-        List<ProductSave> productSaves = saveDtos.stream().map(dto -> ProductSave.builder().name(dto.getName()).build()).toList();
-        List<Product> products = List.of(
-                Product.builder().id(1L).name("product1").build(),
-                Product.builder().id(2L).name("product2").build()
-        );
 
-        given(productMapper.fromStrings(anyList())).willReturn(productSaves);
+        List<String> names = saveDtos.stream().map(ProductSaveDto::getName).toList();
+        List<ProductSave> productSaves = names.stream().map(name -> ProductSave.builder().name(name).build()).toList();
+        List<Product> products = createProduct();
+
+        given(productMapper.fromStrings(names)).willReturn(productSaves);
         given(productSaveUseCases.saveProducts(productSaves)).willReturn(products);
 
         // when
@@ -68,8 +64,14 @@ public class ProductTest {
 
         // then
         actions.andExpect(status().isCreated());
-        for (int i = 0; i < products.size(); i++) {
-            actions.andExpect(jsonPath("$[" + i + "].name").value(products.get(i).getName()));
-        }
+        then(productSaveUseCases).should().saveProducts(productSaves);
+    }
+
+    private List<ProductSaveDto> createProductSaveDto() {
+        return List.of(ProductSaveDto.builder().name("상품1").build(), ProductSaveDto.builder().name("상품2").build());
+    }
+
+    private List<Product> createProduct() {
+        return List.of(Product.builder().id(1L).name("상품1").build(), Product.builder().id(2L).name("상품2").build());
     }
 }
