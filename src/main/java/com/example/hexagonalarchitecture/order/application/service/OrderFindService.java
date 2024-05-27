@@ -22,8 +22,8 @@ public class OrderFindService implements OrderFindUseCases {
     @Override
     @Transactional(readOnly = true)
     public Order findOrder(long orderId) {
-        Order order = userOrderFindPort.findOrder(orderId);
-        List<Product> products = productFindPort.findByIds(orderId);
+        Order order = userOrderFindPort.findByOrderId(orderId);
+        List<Product> products = productFindPort.findByOrderId(orderId);
         order.add(products);
         return order;
     }
@@ -32,7 +32,7 @@ public class OrderFindService implements OrderFindUseCases {
     @Transactional(readOnly = true)
     public Order findOrder(String orderNumber) {
         Order order = guestOrderFindPort.findByOrderNumber(orderNumber);
-        List<Product> products = productFindPort.findByIds(order.getId());
+        List<Product> products = productFindPort.findByOrderId(order.getId());
         order.add(products);
         return order;
     }

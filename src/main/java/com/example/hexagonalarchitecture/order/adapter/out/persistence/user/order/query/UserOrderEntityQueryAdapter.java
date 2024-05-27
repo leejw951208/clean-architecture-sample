@@ -24,7 +24,7 @@ public class UserOrderEntityQueryAdapter implements UserOrderFindPort {
     }
 
     @Override
-    public Order findOrder(long orderId) {
+    public Order findByOrderId(long orderId) {
         return userOrderEntityRepository.findByOrderId(orderId)
                 .orElseThrow(() -> new NoSuchElementException("주문정보를 찾을 수 없습니다."));
     }

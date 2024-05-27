@@ -17,14 +17,14 @@ public class ProductEntityQueryAdapter implements ProductFindPort {
     private final ProductMapper productMapper;
 
     @Override
-    public List<Product> findByIds(long orderId) {
-        List<ProductEntity> productEntities = productEntityRepository.findProducts(orderId);
+    public List<Product> findByOrderId(long orderId) {
+        List<ProductEntity> productEntities = productEntityRepository.findByOrderId(orderId);
         return productMapper.fromEntities(productEntities);
     }
 
     @Override
     public List<Product> findByIds(List<Long> ids) {
-        List<ProductEntity> productEntities = productEntityRepository.findProducts(ids);
+        List<ProductEntity> productEntities = productEntityRepository.findByIds(ids);
         return productMapper.fromEntities(productEntities);
     }
 }

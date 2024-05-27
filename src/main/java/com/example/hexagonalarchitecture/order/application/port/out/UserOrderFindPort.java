@@ -4,5 +4,5 @@ import com.example.hexagonalarchitecture.order.domain.Order;
 
 public interface UserOrderFindPort {
     String findLastOrderNumber();
-    Order findOrder(long orderId);
+    Order findByOrderId(long orderId);
 }

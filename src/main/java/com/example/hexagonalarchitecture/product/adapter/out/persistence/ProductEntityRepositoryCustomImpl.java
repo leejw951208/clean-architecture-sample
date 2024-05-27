@@ -16,7 +16,7 @@ public class ProductEntityRepositoryCustomImpl implements ProductEntityRepositor
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<ProductEntity> findProducts(long orderId) {
+    public List<ProductEntity> findByOrderId(long orderId) {
         return queryFactory
                 .selectFrom(productEntity)
                 .innerJoin(userOrderDetailEntity).on(productEntity.eq(userOrderDetailEntity.product))
@@ -26,7 +26,7 @@ public class ProductEntityRepositoryCustomImpl implements ProductEntityRepositor
     }
 
     @Override
-    public List<ProductEntity> findProducts(List<Long> ids) {
+    public List<ProductEntity> findByIds(List<Long> ids) {
         return queryFactory
                 .selectFrom(productEntity)
                 .where(productEntity.id.in(ids))
