@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
@@ -36,16 +37,21 @@ public class ProductTest {
     public void findProductByOrderId() {
         // given
         long orderId = 1L;
-        List<Product> response = new ArrayList<>();
-        List<ProductEntity> entities = new ArrayList<>();
-        given(productEntityRepository.findByOrderId(orderId)).willReturn(entities);
-        given(productMapper.fromEntities(entities)).willReturn(response);
+        List<Product> products = create();
+        List<ProductEntity> productEntities = new ArrayList<>();
+
+        given(productEntityRepository.findByOrderId(orderId)).willReturn(productEntities);
+        given(productMapper.fromEntities(productEntities)).willReturn(anyList());
 
         // when
         List<Product> findProducts = productEntityQueryAdapter.findByOrderId(orderId);
 
         // then
         then(productEntityRepository).should(times(1)).findByOrderId(orderId);
-        assertThat(response).isEqualTo(findProducts);
+        assertThat(products).isEqualTo(findProducts);
+    }
+
+    private List<Product> create() {
+        return List.of(Product.builder().id(1L).name("product1").build());
     }
 }
