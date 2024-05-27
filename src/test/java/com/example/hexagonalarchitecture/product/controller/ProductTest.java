@@ -49,17 +49,14 @@ public class ProductTest {
     @DisplayName("상품 다건 저장")
     public void saveProductsTest() throws Exception {
         // given
-        List<ProductSaveDto> saveDtos = new ArrayList<>();
+        List<ProductSaveDto> saveDtos = create();
         String content = objectMapper.writeValueAsString(saveDtos);
 
         List<String> names = new ArrayList<>();
         List<ProductSave> productSaves = new ArrayList<>();
-        List<ProductEntity> entities = new ArrayList<>();
-        List<Product> products = new ArrayList<>();
 
         given(productMapper.fromStrings(names)).willReturn(productSaves);
         willDoNothing().given(productSaveUseCases).saveProducts(productSaves);
-        given(productMapper.fromEntities(entities)).willReturn(products);
 
         // when
         ResultActions actions = mockMvc.perform(post("/api/products", 1)
