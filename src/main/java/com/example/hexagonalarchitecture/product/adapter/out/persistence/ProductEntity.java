@@ -28,4 +28,8 @@ public class ProductEntity {
     @CreatedDate
     @Column(name = "created_date", nullable = false)
     private LocalDateTime createdDate;
+
+    public void updateName(String name) {
+        this.name = name;
+    }
 }
