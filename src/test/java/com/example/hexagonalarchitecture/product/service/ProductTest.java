@@ -41,7 +41,7 @@ public class ProductTest {
         List<ProductEntity> productEntities = new ArrayList<>();
 
         given(productEntityRepository.findByOrderId(orderId)).willReturn(productEntities);
-        given(productMapper.fromEntities(productEntities)).willReturn(anyList());
+        given(productMapper.fromEntities(productEntities)).willReturn(products);
 
         // when
         List<Product> findProducts = productEntityQueryAdapter.findByOrderId(orderId);
