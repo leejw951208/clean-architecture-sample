@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.hexagonalarchitecture.order.adapter.out.persistence.user.detail.QUserOrderDetailEntity.userOrderDetailEntity;
 import static com.example.hexagonalarchitecture.order.adapter.out.persistence.user.order.QUserOrderEntity.userOrderEntity;
@@ -31,5 +32,15 @@ public class ProductEntityRepositoryCustomImpl implements ProductEntityRepositor
                 .selectFrom(productEntity)
                 .where(productEntity.id.in(ids))
                 .fetch();
+    }
+
+    @Override
+    public Optional<ProductEntity> findById(long id) {
+        return Optional.ofNullable(
+                queryFactory
+                        .selectFrom(productEntity)
+                        .where(productEntity.id.eq(id))
+                        .fetchOne()
+        );
     }
 }

@@ -3,25 +3,28 @@ package com.example.hexagonalarchitecture.product.adapter.out.persistence.comman
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntityJpaRepository;
 import com.example.hexagonalarchitecture.product.application.port.out.ProductSavePort;
-import com.example.hexagonalarchitecture.product.domain.Product;
+import com.example.hexagonalarchitecture.product.application.port.out.ProductUpdatePort;
 import com.example.hexagonalarchitecture.product.domain.ProductSave;
+import com.example.hexagonalarchitecture.product.domain.ProductUpdate;
 import com.example.hexagonalarchitecture.product.shared.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class ProductEntityCommandAdapter implements ProductSavePort {
+public class ProductEntityCommandAdapter implements ProductSavePort, ProductUpdatePort {
     private final ProductEntityJpaRepository productEntityJpaRepository;
     private final ProductMapper productMapper;
 
     @Override
-    @Transactional
-    public void saveAll(List<ProductSave> products) {
-        List<ProductEntity> productEntities = productMapper.fromProductSaves(products);
-        productEntityJpaRepository.saveAll(productEntities);
+    public void save(ProductSave productSave) {
+        ProductEntity productEntity = productMapper.fromProductSave(productSave);
+        productEntityJpaRepository.save(productEntity);
+    }
+
+    @Override
+    public void update(ProductUpdate productUpdate) {
+        ProductEntity productEntity = productMapper.fromProductUpdate(productUpdate);
+        productEntity.updateName(productUpdate.getName());
     }
 }

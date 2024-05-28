@@ -14,9 +14,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductSaveService implements ProductSaveUseCases {
     private final ProductSavePort productSavePort;
+    private final ProductMapper productMapper;
 
     @Override
-    public void saveProducts(List<ProductSave> productSaves) {
-        productSavePort.saveAll(productSaves);
+    public void saveProduct(String name) {
+        ProductSave productSave = productMapper.fromString(name);
+        productSavePort.save(productSave);
     }
 }
