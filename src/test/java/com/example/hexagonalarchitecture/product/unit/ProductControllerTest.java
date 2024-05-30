@@ -1,6 +1,6 @@
 package com.example.hexagonalarchitecture.product.unit;
 
-import com.example.hexagonalarchitecture.base.BaseUnitTest;
+import com.example.hexagonalarchitecture.base.BaseTest;
 import com.example.hexagonalarchitecture.product.adapter.in.web.ProductCommandController;
 import com.example.hexagonalarchitecture.product.adapter.in.web.ProductQueryController;
 import com.example.hexagonalarchitecture.product.adapter.in.web.dto.ProductFindDto;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = {ProductCommandController.class, ProductQueryController.class})
-public class ProductControllerTest extends BaseUnitTest {
+public class ProductControllerTest extends BaseTest {
     @Autowired
     private MockMvc mockMvc;
 

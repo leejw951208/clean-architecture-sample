@@ -1,6 +1,6 @@
 package com.example.hexagonalarchitecture.product.unit;
 
-import com.example.hexagonalarchitecture.base.BaseUnitTest;
+import com.example.hexagonalarchitecture.base.BaseTest;
 import com.example.hexagonalarchitecture.product.application.port.out.ProductFindPort;
 import com.example.hexagonalarchitecture.product.application.port.out.ProductSavePort;
 import com.example.hexagonalarchitecture.product.application.port.out.ProductUpdatePort;
@@ -13,14 +13,17 @@ import com.example.hexagonalarchitecture.product.domain.ProductUpdate;
 import com.example.hexagonalarchitecture.product.shared.mapper.ProductMapperImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.times;
 
-public class ProductServiceTest extends BaseUnitTest {
+@ExtendWith(MockitoExtension.class)
+public class ProductServiceTest extends BaseTest {
     @Mock
     private ProductMapperImpl productMapper;
 
@@ -97,3 +100,4 @@ public class ProductServiceTest extends BaseUnitTest {
         assertThat(updateName).isEqualTo(productUpdate.getName());
     }
 }
+

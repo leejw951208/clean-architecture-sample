@@ -1,6 +1,6 @@
 package com.example.hexagonalarchitecture.product.unit;
 
-import com.example.hexagonalarchitecture.base.BaseUnitTest;
+import com.example.hexagonalarchitecture.base.BaseTest;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntityJpaRepository;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntityRepository;
@@ -12,15 +12,18 @@ import com.example.hexagonalarchitecture.product.domain.ProductUpdate;
 import com.example.hexagonalarchitecture.product.shared.mapper.ProductMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.*;
 
-public class ProductAdapterTest extends BaseUnitTest {
+@ExtendWith(MockitoExtension.class)
+public class ProductAdapterTest extends BaseTest {
     @Mock
     private ProductMapper productMapper;
 
