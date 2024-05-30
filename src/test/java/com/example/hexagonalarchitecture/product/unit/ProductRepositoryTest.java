@@ -2,8 +2,10 @@ package com.example.hexagonalarchitecture.product.unit;
 
 import com.example.hexagonalarchitecture.config.JpaAuditingConfig;
 import com.example.hexagonalarchitecture.base.BaseUnitTest;
+import com.example.hexagonalarchitecture.config.QueryDslConfig;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntity;
 import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntityJpaRepository;
+import com.example.hexagonalarchitecture.product.adapter.out.persistence.ProductEntityRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-@Import(JpaAuditingConfig.class)
+@Import({JpaAuditingConfig.class, QueryDslConfig.class})
 public class ProductRepositoryTest extends BaseUnitTest {
     @Autowired
     private ProductEntityJpaRepository productEntityJpaRepository;

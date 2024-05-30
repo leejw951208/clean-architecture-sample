@@ -13,7 +13,7 @@ import static com.example.hexagonalarchitecture.product.adapter.out.persistence.
 
 @Repository
 @RequiredArgsConstructor
-public class ProductEntityRepositoryCustomImpl implements ProductEntityRepository {
+public class ProductEntityRepositoryImpl implements ProductEntityRepository {
     private final JPAQueryFactory queryFactory;
 
     @Override
